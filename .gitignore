@@ -105,6 +105,7 @@ venv.bak/
 
 # personal
 .vscode
+.idea
 .DS_Store
 logs
 output

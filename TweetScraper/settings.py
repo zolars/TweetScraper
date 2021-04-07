@@ -7,9 +7,7 @@ config.read("config.ini")
 
 MONGODB_HOST = str(config["MONGODB"]["HOST"])
 MONGODB_PORT = int(config["MONGODB"]["PORT"])
-MONGODB_DBNAME = "twitter"
-MONGODB_USER = config["MONGODB"]["USER"]
-MONGODB_PASSWORD = str(config["MONGODB"]["PASSWORD"])
+MONGODB_DBNAME = "monitor"
 
 GOOGLEMAP_API_KEY = config["API"]["GOOGLEMAP_API_KEY"]
 
@@ -23,8 +21,8 @@ LOG_LEVEL = "INFO"
 SPIDER_MODULES = ["TweetScraper.spiders"]
 NEWSPIDER_MODULE = "TweetScraper.spiders"
 ITEM_PIPELINES = {
-    "TweetScraper.pipelines.SaveToFilePipeline": 100,
-    # "TweetScraper.pipelines.SavetoMongoDBPipeline": 100,
+    # "TweetScraper.pipelines.SaveToFilePipeline": 100,
+    "TweetScraper.pipelines.SavetoMongoDBPipeline": 100,
 }
 
 # settings for where to save data on disk

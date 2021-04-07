@@ -6,6 +6,7 @@ class Tweet(Item):
     parameters:
         - source
         - created_at
+        - collected_at
         - url
         - tweet_id
         - content
@@ -17,9 +18,8 @@ class Tweet(Item):
         - quote_count
         - user
     '''
-    source = "twitter"
-
     created_at = Field()
+    collected_at = Field()
 
     url = Field()
     tweet_id = Field()
@@ -42,6 +42,7 @@ class User(Item):
     '''
     parameters:
         - created_at
+        - collected_at
         - user_id
         - user_profile_url
         - user_name
@@ -55,6 +56,7 @@ class User(Item):
         - city
     '''
     created_at = Field()
+    collected_at = Field()
 
     user_id = Field()
     user_profile_url = Field()

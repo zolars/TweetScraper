@@ -156,6 +156,7 @@ class TweetScraper(CrawlSpider):
                 user_item["created_at"],
                 "%a %b %d %H:%M:%S %z %Y",
             )
+            user["collected_at"] = datetime.now()
 
             user["user_id"] = user_item["id"]
             user[
@@ -188,7 +189,9 @@ class TweetScraper(CrawlSpider):
                     elif item["types"][0] == "administrative_area_level_2":
                         user["city"] = long_name
             except IndexError:
-                pass
+                user["country"] = None
+                user["state"] = None
+                user["city"] = None
 
             yield user
 
@@ -200,6 +203,8 @@ class TweetScraper(CrawlSpider):
         for _, tweet_item in tweet_items.items():
 
             tweet = Tweet()
+
+            tweet["collected_at"] = datetime.now()
             user = users[tweet_item["user_id"]]
 
             tweet["created_at"] = datetime.strptime(
