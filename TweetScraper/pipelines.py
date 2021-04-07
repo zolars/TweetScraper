@@ -30,24 +30,24 @@ class SavetoMongoDBPipeline(object):
         if isinstance(item, Tweet):
             # if os.path.isfile(savePath):
             #     pass  # simply skip existing items
-            #     # logger.debug("skip tweet:%s"%item['id_'])
+            #     # logger.debug("skip tweet:%s"%item["id_"])
             #     ### or you can rewrite the file, if you don't want to skip:
             #     # self.save_to_file(item,savePath)
-            #     # logger.debug("Update tweet:%s"%item['id_'])
+            #     # logger.debug("Update tweet:%s"%item["id_"])
             # else:
             self.save_to_mongodb(item, "tweet")
-            logger.debug("Add tweet:%s" % item['id_'])
+            logger.debug("Add tweet:%s" % item["id_"])
 
         elif isinstance(item, User):
             # if os.path.isfile(savePath):
             #     pass  # simply skip existing items
-            #     # logger.debug("skip user:%s"%item['id_'])
+            #     # logger.debug("skip user:%s"%item["id_"])
             #     ### or you can rewrite the file, if you don't want to skip:
             #     # self.save_to_file(item,savePath)
-            #     # logger.debug("Update user:%s"%item['id_'])
+            #     # logger.debug("Update user:%s"%item["id_"])
             # else:
             self.save_to_mongodb(item, "user")
-            logger.debug("Add user:%s" % item['id_'])
+            logger.debug("Add user:%s" % item["id_"])
 
         else:
             logger.info("Item type is not recognized! type = %s" % type(item))
@@ -63,12 +63,13 @@ class SavetoMongoDBPipeline(object):
 
 
 class SaveToFilePipeline(object):
-    ''' pipeline that save data to disk '''
+    '' " pipeline that save data to disk " ''
+
     def __init__(self):
         settings = get_project_settings()
 
-        self.saveTweetPath = settings['SAVE_TWEET_PATH']
-        self.saveUserPath = settings['SAVE_USER_PATH']
+        self.saveTweetPath = settings["SAVE_TWEET_PATH"]
+        self.saveUserPath = settings["SAVE_USER_PATH"]
         mkdirs(self.saveTweetPath)  # ensure the path exists
         mkdirs(self.saveUserPath)
 
@@ -83,13 +84,13 @@ class SaveToFilePipeline(object):
             )
             if os.path.isfile(savePath):
                 pass  # simply skip existing items
-                # logger.debug("skip tweet:%s"%item['id_'])
+                # logger.debug("skip tweet:%s"%item["id_"])
                 ### or you can rewrite the file, if you don't want to skip:
                 # self.save_to_file(item,savePath)
-                # logger.debug("Update tweet:%s"%item['id_'])
+                # logger.debug("Update tweet:%s"%item["id_"])
             else:
                 self.save_to_file(item, savePath)
-                logger.debug("Add tweet:%s" % item['tweet_id'])
+                logger.debug("Add tweet:%s" % item["tweet_id"])
 
         elif isinstance(item, User):
             savePath = os.path.join(
@@ -98,13 +99,13 @@ class SaveToFilePipeline(object):
             )
             if os.path.isfile(savePath):
                 pass  # simply skip existing items
-                # logger.debug("skip user:%s"%item['id_'])
+                # logger.debug("skip user:%s"%item["id_"])
                 ### or you can rewrite the file, if you don't want to skip:
                 # self.save_to_file(item,savePath)
-                # logger.debug("Update user:%s"%item['id_'])
+                # logger.debug("Update user:%s"%item["id_"])
             else:
                 self.save_to_file(item, savePath)
-                logger.debug("Add user:%s" % item['user_id'])
+                logger.debug("Add user:%s" % item["user_id"])
 
         else:
             logger.info("Item type is not recognized! type = %s" % type(item))
@@ -114,5 +115,5 @@ class SaveToFilePipeline(object):
                 item - a dict like object
                 fname - where to save
         '''
-        with open(fname, 'w', encoding='utf-8') as f:
+        with open(fname, "w", encoding="utf-8") as f:
             json.dump(dict(item), f, ensure_ascii=False)
