@@ -11,6 +11,10 @@ class Tweet(Item):
         - content
         - language
         - tweet_client
+        - retweet_count
+        - favorite_count
+        - reply_count
+        - quote_count
         - user
     '''
     source = "twitter"
@@ -22,6 +26,14 @@ class Tweet(Item):
     content = Field()
     language = Field()
     tweet_client = Field()
+
+    retweet_count = Field()
+    favorite_count = Field()
+    reply_count = Field()
+    quote_count = Field()
+
+    in_reply_to_status_id = Field()
+    in_reply_to_user_id = Field()
 
     user = Field()
 
