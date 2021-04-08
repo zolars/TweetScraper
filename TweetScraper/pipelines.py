@@ -27,47 +27,47 @@ class SavetoMongoDBPipeline(object):
         if isinstance(item, Tweet):
             try:
                 col = self._db["base"]
-                # col.insert_one({
-                #     "Collected Date":
-                #     item["collected_at"],
-                #     "Date":
-                #     item["created_at"],
-                #     "URL":
-                #     item["url"],
-                #     "Hit Sentence":
-                #     item["content"],
-                #     "Source":
-                #     "Twitter",
-                #     "Influencer":
-                #     "@" + item["user"]["user_name"],
-                #     "Country":
-                #     item["user"]["country"],
-                #     "Language":
-                #     item["language"],
-                #     "Reach":
-                #     item["retweet_count"] + item["favorite_count"] +
-                #     item["reply_count"] + item["quote_count"],
-                #     "Tweet Id":
-                #     item["tweet_id"],
-                #     "Twitter Id":
-                #     item["user"]["user_id"],
-                #     "Twitter Client":
-                #     item["tweet_client"],
-                #     "Twitter Screen Name":
-                #     item["user"]["user_screen_name"],
-                #     "User Profile Url":
-                #     item["user"]["user_profile_url"],
-                #     "Twitter Bio":
-                #     item["user"]["user_bio"],
-                #     "Twitter Followers":
-                #     item["user"]["user_followers"],
-                #     "Twitter Following":
-                #     item["user"]["user_following"],
-                #     "State":
-                #     item["user"]["state"],
-                #     "City":
-                #     item["user"]["city"],
-                # })
+                col.insert_one({
+                    "Collected Date":
+                    item["collected_at"],
+                    "Date":
+                    item["created_at"],
+                    "URL":
+                    item["url"],
+                    "Hit Sentence":
+                    item["content"],
+                    "Source":
+                    "Twitter",
+                    "Influencer":
+                    "@" + item["user"]["user_name"],
+                    "Country":
+                    item["user"]["country"],
+                    "Language":
+                    item["language"],
+                    "Reach":
+                    item["retweet_count"] + item["favorite_count"] +
+                    item["reply_count"] + item["quote_count"],
+                    "Tweet Id":
+                    item["tweet_id"],
+                    "Twitter Id":
+                    item["user"]["user_id"],
+                    "Twitter Client":
+                    item["tweet_client"],
+                    "Twitter Screen Name":
+                    item["user"]["user_screen_name"],
+                    "User Profile Url":
+                    item["user"]["user_profile_url"],
+                    "Twitter Bio":
+                    item["user"]["user_bio"],
+                    "Twitter Followers":
+                    item["user"]["user_followers"],
+                    "Twitter Following":
+                    item["user"]["user_following"],
+                    "State":
+                    item["user"]["state"],
+                    "City":
+                    item["user"]["city"],
+                })
             except Exception as err:
                 logger.debug(err)
             logger.info("Add tweet:%s" % item["tweet_id"])
