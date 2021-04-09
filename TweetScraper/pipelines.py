@@ -45,8 +45,12 @@ class SavetoMongoDBPipeline(object):
                     "Language":
                     item["language"],
                     "Reach":
-                    item["retweet_count"] + item["favorite_count"] +
-                    item["reply_count"] + item["quote_count"],
+                    item["retweet_count"] + item["quote_count"] +
+                    item["favorite_count"] + item["reply_count"],
+                    "Like Num":
+                    item["favorite_count"],
+                    "Reply Num":
+                    item["reply_count"],
                     "Tweet Id":
                     item["tweet_id"],
                     "Twitter Id":
